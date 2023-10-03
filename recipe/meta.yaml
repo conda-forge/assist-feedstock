@@ -1,17 +1,19 @@
 {% set name = "assist" %}
-{% set version = "1.1.4" %}
-{% set sha256 = "2f45be7bfecfe978e098006e1b951bcc984a4ff6511cff2d397c56041ed177b6" %}
+{% set version = "1.1.5" %}
+{% set sha256 = "d4cd0637df0492f497d51caf8df39ba7339d92a31722284a72ae9612ee53680a" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/matthewholman/assist/archive/refs/tags/v{{ version }}.tar.gz
+  #path: /Users/mjuric/projects/github.com/mjuric/assist
+  url: https://github.com/mjuric/assist/archive/refs/tags/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win]
   script: {{ PYTHON }} -m pip install . --no-deps -vv
 
