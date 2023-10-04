@@ -1,6 +1,6 @@
 {% set name = "assist" %}
-{% set version = "1.1.5" %}
-{% set sha256 = "d4cd0637df0492f497d51caf8df39ba7339d92a31722284a72ae9612ee53680a" %}
+{% set version = "1.1.6" %}
+{% set sha256 = "0ee00e63c70062e050dcf1f6f4dab39920e71873e96f03e28f769176e024d6be" %}
 
 package:
   name: {{ name|lower }}
