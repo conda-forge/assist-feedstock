@@ -1,6 +1,6 @@
 {% set name = "assist" %}
-{% set version = "1.1.8" %}
-{% set sha256 = "046cd731d153bd9011853e52e78784e3da7001e1e973ff35214b60647e75f7fb" %}
+{% set version = "1.1.8.1" %}
+{% set sha256 = "3a4ffecabc6cac12d2a4ebedf8bdc43d5cdc8b6fb7e91b33d649bb12a11e5955" %}
 
 package:
   name: {{ name|lower }}
@@ -8,14 +8,31 @@ package:
 
 source:
   #path: /Users/mjuric/projects/github.com/mjuric/assist
-  url: https://github.com/matthewholman/assist/archive/refs/tags/v{{ version }}.tar.gz
+  url: https://github.com/mjuric/assist/archive/refs/tags/v{{ version }}.tar.gz
   sha256: {{ sha256 }}
-  # curl -L https://github.com/matthewholman/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256
+  # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256
 
 build:
   number: 0
   skip: True  # [win]
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script:
+  - |
+    SUFFIX=$({{ PYTHON }} -c "import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))")
+    LIBDIR=$({{ PYTHON }} -c "import distutils.sysconfig as s; print(s.get_python_lib())")
+    L="$LIBDIR/libassist$SUFFIX"
+    echo "BUILDING LIBRARY: $L"
+    {{ PYTHON }} -m pip install . --no-deps -vv
+    if [[ $(uname) == Darwin ]]; then
+      echo "CHECKING LINKED DEPENDENCIES:"
+      otool -L "$L"
+      if ! otool -L "$L" | grep -q "librebound"; then
+        echo "error: librebound not linked"
+        /bin/false
+      else
+        echo "librebound found to be linked, OK!"
+      fi
+      echo "==="
+    fi
 
 requirements:
   build:
