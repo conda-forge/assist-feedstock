@@ -1,6 +1,6 @@
 {% set name = "assist" %}
-{% set version = "1.1.8.1" %}
-{% set sha256 = "3a4ffecabc6cac12d2a4ebedf8bdc43d5cdc8b6fb7e91b33d649bb12a11e5955" %}
+{% set version = "1.1.9" %}
+{% set sha256 = "f5e285e1b17d4c07886e290ba12d9df02780bf7493fbeae743d7d5dfe778c85b" %}
 
 package:
   name: {{ name|lower }}
@@ -39,16 +39,16 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy 1.24                             # [build_platform != target_platform]
-    - rebound >=4.0                          # [build_platform != target_platform]
+    - rebound >=4.4.1                        # [build_platform != target_platform]
     - {{ compiler('c') }}
   host:
     - python
     - numpy 1.24
-    - rebound >=4.0
+    - rebound >=4.4.1
     - pip
   run:
     - python
-    - rebound >=4.0
+    - rebound >=4.4.1
     - {{ pin_compatible('numpy') }}
 
 test:
