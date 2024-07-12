@@ -6,7 +6,7 @@ conda_build:
   error_overlinking: true
 build_platform:
   osx_arm64: osx_64
-  linux_aarch64: linux_64
+  linux_aarch64: linux_aarch64
 test: native_and_emulated
 provider:
   linux_aarch64: default
