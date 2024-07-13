@@ -13,7 +13,7 @@ source:
   # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   script:
   - |
@@ -41,6 +41,7 @@ requirements:
     - numpy >=1.24                           # [build_platform != target_platform]
     - rebound >=4.4.1                        # [build_platform != target_platform]
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
   host:
     - python
     - numpy >=1.24
