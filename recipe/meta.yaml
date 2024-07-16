@@ -44,7 +44,7 @@ requirements:
     - {{ stdlib('c') }}
   host:
     - python
-    - numpy >=1.24
+    - numpy
     - rebound >=4.4.1
     - pip
   run:
