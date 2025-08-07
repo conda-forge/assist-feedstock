@@ -18,7 +18,7 @@ build:
   script:
   - |
     SUFFIX=$({{ PYTHON }} -c "import sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))")
-    LIBDIR=$({{ PYTHON }} -c "import sysconfig as s; print(s.get_python_lib())")
+    LIBDIR=$({{ PYTHON }} -c "import sysconfig as s; print(s.get_path('purelib'))")
     L="$LIBDIR/libassist$SUFFIX"
     echo "BUILDING LIBRARY: $L"
     {{ PYTHON }} -m pip install . --no-deps -vv
