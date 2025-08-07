@@ -13,12 +13,12 @@ source:
   # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256
 
 build:
-  number: 2
+  number: 3
   skip: True  # [win]
   script:
   - |
-    SUFFIX=$({{ PYTHON }} -c "import distutils.sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))")
-    LIBDIR=$({{ PYTHON }} -c "import distutils.sysconfig as s; print(s.get_python_lib())")
+    SUFFIX=$({{ PYTHON }} -c "import sysconfig as s; print(s.get_config_var('EXT_SUFFIX'))")
+    LIBDIR=$({{ PYTHON }} -c "import sysconfig as s; print(s.get_path('purelib'))")
     L="$LIBDIR/libassist$SUFFIX"
     echo "BUILDING LIBRARY: $L"
     {{ PYTHON }} -m pip install . --no-deps -vv
@@ -44,6 +44,8 @@ requirements:
     - {{ stdlib('c') }}
   host:
     - python
+    - setuptools
+    - wheel
     - numpy
     - rebound >=4.4.1
     - pip
