@@ -38,7 +38,7 @@ requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - numpy                                  # [build_platform != target_platform]
+    - numpy {{ numpy }}                      # [build_platform != target_platform]
     - rebound >=4.4.1                        # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
@@ -46,7 +46,7 @@ requirements:
     - python
     - setuptools
     - wheel
-    - numpy
+    - numpy {{ numpy }}
     - rebound >=4.4.1
     - pip
   run:
