@@ -1,6 +1,6 @@
 {% set name = "assist" %}
-{% set version = "1.1.9" %}
-{% set sha256 = "f5e285e1b17d4c07886e290ba12d9df02780bf7493fbeae743d7d5dfe778c85b" %}
+{% set version = "1.1.11" %}
+{% set sha256 = "236ff5a752b16e911416656edf1057688c991d164a7a3e53163405b1c3020509" %}
 
 package:
   name: {{ name|lower }}
@@ -13,7 +13,7 @@ source:
   # curl -L https://github.com/mjuric/assist/archive/refs/tags/v1.1.5.tar.gz | openssl sha256
 
 build:
-  number: 3
+  number: 0
   skip: True  # [win]
   script:
   - |
