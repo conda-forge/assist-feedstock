@@ -38,7 +38,7 @@ requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - numpy                      # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
     - rebound >=4.4.1                        # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
@@ -52,7 +52,6 @@ requirements:
   run:
     - python
     - rebound >=4.4.1
-    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
